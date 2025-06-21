@@ -1,6 +1,6 @@
 # 🔥 Temp Mail - VWH Email API Client
 
-![Temp Mail Screenshot](https://i.imgur.com/jl0XJ9j.png) 
+![Temp Mail Screenshot]() 
 
 **A privacy-focused disposable email client** that lets you receive emails without exposing your real address. Perfect for signups, verifications, and anonymous communication.
 
