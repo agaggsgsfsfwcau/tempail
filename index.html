@@ -47,6 +47,15 @@
     .warning-note {
       background-color: #fff3cd;
       border-left: 4px solid #ffc107;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    .warning-note.hidden {
+      height: 0;
+      padding: 0;
+      margin: 0;
+      border: 0;
+      opacity: 0;
     }
     /* Modal animation */
     .modal {
@@ -63,13 +72,28 @@
       margin-bottom: 1.5rem;
       border-left: 4px solid #4f46e5;
     }
+    .toggle-warning-btn {
+      background-color: #ffc107;
+      color: #000;
+      border: none;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .toggle-warning-btn:hover {
+      background-color: #e0a800;
+    }
   </style>
 </head>
 <body class="bg-gray-100 text-gray-900 fade-in">
   <div class="max-w-3xl mx-auto my-6 px-4">
     <!-- Description Box -->
     <div class="description-box">
-      <h2 class="text-xl font-bold text-gray-800 mb-2">About Temp Mail</h2>
+      <h2 class="text-xl font-bold text-gray-800 mb-2">Temp Mail</h2>
       <p class="text-gray-700 mb-3">
         Temp Mail provides you with a temporary, disposable email address that you can use to sign up for services without revealing your personal email. All emails are automatically deleted after a short period.
       </p>
@@ -85,18 +109,6 @@
         <div class="flex items-start">
           <span class="material-icons text-blue-500 mr-2">devices</span>
           <span>Works on all devices</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Warning Note -->
-    <div class="warning-note p-4 mb-6 rounded-lg">
-      <div class="flex items-start">
-        <span class="material-icons text-yellow-600 mr-2">warning</span>
-        <div>
-          <strong>Important Notice:</strong> This project is purely for educational purposes. We do not allow illegal 
-          activities and are not responsible for any misuse. This project uses email.vwh.sh's API for creating temporary 
-          emails. Use it legally and responsibly.
         </div>
       </div>
     </div>
@@ -197,6 +209,26 @@
     </div>
   </div>
 
+      <!-- Warning Note with Toggle -->
+    <div id="warningNoteContainer" class="mb-6">
+      <div class="flex justify-end mb-1">
+        <button id="toggleWarningBtn" class="toggle-warning-btn" onclick="toggleWarningNote()">
+          <span class="material-icons text-sm">visibility_off</span>
+          <span>Hide Warning</span>
+        </button>
+      </div>
+      <div id="warningNote" class="warning-note p-4 rounded-lg">
+        <div class="flex items-start">
+          <span class="material-icons text-yellow-600 mr-2">warning</span>
+          <div>
+            <strong>Important Notice:</strong> This project is purely for educational purposes. We do not allow illegal 
+            activities and are not responsible for any misuse. This project uses email.vwh.sh's API for creating temporary 
+            emails. Use it legally and responsibly.
+          </div>
+        </div>
+      </div>
+    </div>
+  
   <!-- Privacy Policy Modal -->
   <div id="privacyModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center p-4 z-50">
     <div class="bg-white rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto modal">
@@ -249,6 +281,8 @@
       msgSubject: document.getElementById('msgSubject'),
       msgTime: document.getElementById('msgTime'),
       messageContent: document.getElementById('messageContent'),
+      warningNote: document.getElementById('warningNote'),
+      toggleWarningBtn: document.getElementById('toggleWarningBtn')
     };
 
     // Application State
@@ -256,7 +290,8 @@
       currentEmail: localStorage.getItem('temp_email') || '',
       refreshInterval: null,
       currentMessage: null,
-      messages: []
+      messages: [],
+      warningHidden: localStorage.getItem('warningHidden') === 'true'
     };
 
     // Utility Functions
@@ -284,6 +319,28 @@
     };
 
     const getRandomDomain = () => DOMAINS[Math.floor(Math.random() * DOMAINS.length)];
+
+    // Warning Note Functions
+    function toggleWarningNote() {
+      state.warningHidden = !state.warningHidden;
+      localStorage.setItem('warningHidden', state.warningHidden);
+      
+      if (state.warningHidden) {
+        DOM.warningNote.classList.add('hidden');
+        DOM.toggleWarningBtn.innerHTML = '<span class="material-icons text-sm">visibility</span><span>Show Warning</span>';
+      } else {
+        DOM.warningNote.classList.remove('hidden');
+        DOM.toggleWarningBtn.innerHTML = '<span class="material-icons text-sm">visibility_off</span><span>Hide Warning</span>';
+      }
+    }
+
+    // Initialize warning note state
+    function initWarningNote() {
+      if (state.warningHidden) {
+        DOM.warningNote.classList.add('hidden');
+        DOM.toggleWarningBtn.innerHTML = '<span class="material-icons text-sm">visibility</span><span>Show Warning</span>';
+      }
+    }
 
     // Core Functions
     async function generateEmail() {
@@ -500,6 +557,9 @@
           hidePrivacyPolicy();
         }
       });
+
+      // Initialize warning note state
+      initWarningNote();
     });
 
     // Cleanup
