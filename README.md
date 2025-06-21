@@ -4,7 +4,7 @@
 
 **A privacy-focused disposable email client** that lets you receive emails without exposing your real address. Perfect for signups, verifications, and anonymous communication.
 
-[![GitHub Stars](https://img.shields.io/github/stars/yourusername/repo?style=social)](https://github.com/yourusername/repo)
+[![GitHub Stars](https://img.shields.io/github/stars/yourusername/repo?style=social)](https://github.com/agaggsgsfsfwcau/tempail/stargazers)
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 ---
