@@ -4,7 +4,7 @@
 
 **A privacy-focused disposable email client** that lets you receive emails without exposing your real address. Perfect for signups, verifications, and anonymous communication.
 
-[![GitHub Stars](https://img.shields.io/github/stars/yourusername/repo?style=social)](https://github.com/agaggsgsfsfwcau/tempail/stargazers)
+[![GitHub Stars](https://img.shields.io/github/stars/agaggsgsfsfwcau/tempail?style=social)](https://github.com/agaggsgsfsfwcau/tempail)
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 ---
@@ -63,7 +63,7 @@
 ### Local Development
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/repo.git
+git clone https://github.com/agaggsgsfsfwcau/tempail.git
 
 # Open in browser (no build required)
 open index.html
@@ -88,5 +88,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## ✉️ Contact
 For questions or support, please contact:
-- Email: support@vwh.sh
-- GitHub Issues: [https://github.com/yourusername/repo/issues](https://github.com/yourusername/repo/issues)
+- Email: astaab1@protonmail.com
+- GitHub Issues: [https://github.com/agaggsgsfsfwcau/tempail/issues](https://github.com/agaggsgsfsfwcau/tempail/issues)
