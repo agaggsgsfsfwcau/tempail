@@ -437,7 +437,7 @@
         try {
           showLoader('Deleting...');
           const response = await fetch(`${API_BASE}/delete/${state.currentMessage.id}`, {
-            method: 'DELETE'
+            method: 'GET' // Changed to GET as per API documentation
           });
           
           if (!response.ok) throw new Error('Failed to delete message');
